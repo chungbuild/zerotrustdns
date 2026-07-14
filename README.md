@@ -46,7 +46,7 @@ Hoạt động với gói miễn phí của Cloudflare (lên đến 300.000 doma
 - Vào [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profile/api-tokens)
 - Bấm **Create Token → Create Custom Token**
 - Đặt tên tùy ý
-- Mục **Permissions** chọn: `Zero Trust` → `Edit`
+- Mục **Permissions** chọn: **Account** giữ nguyên, ở giữa chọn `Zero Trust`, ở ngoài chọn `Edit`
 - Bấm **Continue to summary → Create Token**
 - Copy token lại (chỉ hiện 1 lần duy nhất)
 
