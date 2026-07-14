@@ -1,7 +1,7 @@
 name: Update blocklists
 on:
   schedule:
-    - cron: "0 3 * * 1"  # Tự chạy mỗi thứ 2 lúc 3am
+    - cron: "0 3 * * *"  # Tự chạy mỗi ngày lúc 3am
   workflow_dispatch:       # Cho phép chạy thủ công
 
 jobs:
