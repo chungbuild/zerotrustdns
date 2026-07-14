@@ -34,8 +34,8 @@ Hoạt động với gói miễn phí của Cloudflare (lên đến 300.000 doma
 ### Bước 3 — Lấy API Token + Account ID
 
 **Account ID:**
-- Vào [dash.cloudflare.com](https://dash.cloudflare.com)
-- Nhìn sidebar bên phải, copy **Account ID**
+- Vào [dash.cloudflare.com](https://dash.cloudflare.com) → **Compute → Workers & Pages**
+- Kéo xuống dưới, copy **Account ID** ở cuối trang bên phải
 
 **API Token:**
 - Vào [dash.cloudflare.com/profile/api-tokens](https://dash.cloudflare.com/profile/api-tokens)
