@@ -58,9 +58,9 @@ Bấm **Fork → Create fork** ở góc trên bên phải.
 
 Vào repo vừa fork → **Settings → Secrets and variables → Actions → New repository secret**
 
-Thêm 2 secrets:
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
+Thêm lần lượt 2 secret:
+- `CLOUDFLARE_API_TOKEN` — dán API Token vừa tạo ở Bước 3
+- `CLOUDFLARE_ACCOUNT_ID` — dán Account ID vừa copy ở Bước 3
 
 ### Bước 6 — Chạy workflow
 
