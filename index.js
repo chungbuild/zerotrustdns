@@ -20,14 +20,14 @@ if (isDelete) {
   console.log("Deleting all CGPS lists and rules from Cloudflare...");
 
   const { result: rules } = await getRules();
-  const cgpsRules = rules.filter(({ name }) => name.startsWith("zerotrustdns Filter Lists"));
+  const cgpsRules = rules.filter(({ name }) => name.startsWith("CGPS Filter Lists"));
   for (const rule of cgpsRules) {
     console.log(`Deleting rule: ${rule.name}`);
     await deleteRule(rule.id);
   }
 
   const { result: lists } = await getLists();
-  const cgpsLists = lists.filter(({ name }) => name.startsWith("zerotrustdns List"));
+  const cgpsLists = lists.filter(({ name }) => name.startsWith("CGPS List"));
   if (cgpsLists.length) {
     console.log(`Deleting ${cgpsLists.length} lists...`);
     await deleteAllLists(cgpsLists);
