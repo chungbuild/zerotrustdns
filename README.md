@@ -27,9 +27,28 @@ Hoạt động với gói miễn phí của Cloudflare (lên đến 300.000 doma
 
 ### Bước 2 — Tạo DNS Location
 
-- Vào **Zero Trust → Network → DNS → Add a location**
-- Đặt tên tùy ý → **Add location**
-- Copy 2 địa chỉ DNS được cấp, set vào router hoặc thiết bị
+1. Vào [dash.cloudflare.com](https://dash.cloudflare.com), tìm **Zero Trust** trong sidebar trái (xem ảnh dưới)
+
+![Bước 2 - Vào Zero Trust](images/step2-1.png)
+
+2. Vào **Networks → Resolvers & Proxies**, chọn **Add a location**
+
+![Bước 2 - Vào Resolvers & Proxies](images/step2-2.png)
+
+3. Điền **Location name** tùy thích, rồi bật các endpoint tùy theo nhu cầu:
+   - **IPv4 DNS** — để gán IP thẳng vào router/modem nhà mạng
+   - **DNS over TLS (DoT)** — để gán vào thiết bị Android
+   - **DNS over HTTPS (DoH)** — để gán vào iPhone/iPad hay trình duyệt máy tính
+
+![Bước 2 - Add DNS endpoints](images/step2-3.png)
+
+4. Nên bật thêm:
+   - **Enable EDNS client subnet** — để có ECS ẩn danh trong nước
+   - **Set as Default DNS Location**
+
+5. Ấn **Continue**, rồi **Continue** lần nữa là xong. Hệ thống sẽ hiển thị thông số DNS của bạn (IPv4, DoT, DoH), bạn tự gán vào thiết bị theo hướng dẫn
+
+![Bước 2 - Thông số DNS](images/step2-4.png)
 
 ### Bước 3 — Lấy API Token + Account ID
 
