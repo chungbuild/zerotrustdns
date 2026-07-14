@@ -68,6 +68,29 @@ Vào tab **Actions → Update blocklists → Run workflow**
 
 Chờ khoảng 1-2 phút. Blocklist tự cập nhật mỗi ngày lúc 3am.
 
+## Cấu hình DNS trên thiết bị
+
+Sau khi chạy workflow xong, vào **Zero Trust → Networks → Resolvers & Proxies** → copy địa chỉ DNS (IPv4, DoT, DoH) rồi cấu hình trên thiết bị:
+
+### iPhone/iPad
+
+1. Copy địa chỉ DoH từ Cloudflare (dạng `https://xxxxx.cloudflare-gateway.com/dns-query`)
+2. Vào [dns.ducchung.com](https://dns.ducchung.com)
+3. Dán địa chỉ DoH → bấm **Tải Profile**
+4. Mở file vừa tải → **Install** → Xong
+
+### Android
+
+1. Copy địa chỉ DoT từ Cloudflare
+2. Vào **Settings → Network → Private DNS**
+3. Nhập hostname DoT → Lưu
+
+### Router/Modem
+
+1. Copy địa chỉ IPv4 từ Cloudflare
+2. Vào cài đặt router → đổi DNS server thành địa chỉ IPv4
+3. Tất cả thiết bị trong mạng sẽ tự động được chặn quảng cáo
+
 ## Thêm blocklist tùy chọn
 
 Nếu muốn thêm blocklist khác, vào **Settings → Secrets and variables → Actions → New repository secret**, thêm secret tên `BLOCKLIST_URLS` với nội dung là các URL, mỗi URL một dòng:
