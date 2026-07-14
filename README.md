@@ -1,6 +1,6 @@
-# Zerotrustgateway
+# Zerotrustdns
 
-Chặn quảng cáo ở cấp DNS bằng Cloudflare Zero Trust Gateway — miễn phí, không cần cài app hay extension.
+Chặn quảng cáo và cờ bạc ở cấp DNS bằng Cloudflare Zero Trust Gateway — miễn phí, không cần cài app hay extension.
 
 Hoạt động với gói miễn phí của Cloudflare (lên đến 300.000 domain bị chặn).
 
@@ -10,6 +10,13 @@ Hoạt động với gói miễn phí của Cloudflare (lên đến 300.000 doma
 2. Lọc và loại bỏ trùng lặp, loại bỏ các domain được cho phép
 3. Upload lên Cloudflare Gateway dưới dạng "Lists"
 4. Tạo Gateway DNS policy chặn toàn bộ các domain trong danh sách
+5. Tự cập nhật mỗi ngày lúc 3am
+
+## Blocklist mặc định
+
+- **AdGuard DNS Filter** — chặn quảng cáo
+- **hostsVN** — chặn quảng cáo Việt Nam
+- **Gambling** — chặn cờ bạc
 
 ## Cài đặt
 
@@ -20,7 +27,7 @@ Hoạt động với gói miễn phí của Cloudflare (lên đến 300.000 doma
 
 ### Bước 2 — Tạo DNS Location
 
-- Vào **Gateway → DNS Locations → Add a location**
+- Vào **Zero Trust → Network → DNS → Add a location**
 - Đặt tên tùy ý → **Add location**
 - Copy 2 địa chỉ DNS được cấp, set vào router hoặc thiết bị
 
@@ -54,11 +61,11 @@ Thêm 2 secrets:
 
 Vào tab **Actions → Update blocklists → Run workflow**
 
-Chờ khoảng 1-2 phút. Blocklist tự cập nhật mỗi thứ 2 hàng tuần.
+Chờ khoảng 1-2 phút. Blocklist tự cập nhật mỗi ngày lúc 3am.
 
-## Blocklist
+## Thêm blocklist tùy chọn
 
-Dự án đã bật sẵn 2 blocklist tối ưu nhất cho người Việt là **AdGuard DNS Filter** và **hostsVN**. Nếu muốn thêm blocklist khác, vào **Settings → Secrets and variables → Actions → New repository secret**, thêm secret tên `BLOCKLIST_URLS` với nội dung là các URL, mỗi URL một dòng:
+Nếu muốn thêm blocklist khác, vào **Settings → Secrets and variables → Actions → New repository secret**, thêm secret tên `BLOCKLIST_URLS` với nội dung là các URL, mỗi URL một dòng:
 
 ```
 https://example.com/blocklist1.txt
