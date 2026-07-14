@@ -1,5 +1,5 @@
 /**
- * Cloudflare Gateway Ad Blocker
+ * Zero Trust DNS — Cloudflare Gateway Ad Blocker
  * Downloads filter lists and syncs them to Cloudflare Zero Trust Gateway.
  *
  * Usage:
@@ -8,7 +8,6 @@
  *   node index.js --delete → delete all CGPS lists and rules from Cloudflare
  */
 
-import "dotenv/config";
 import { downloadLists, parseDomains } from "./lib/lists.js";
 import { syncLists, deleteAllLists, upsertRule, deleteRule, getLists, getRules } from "./lib/cloudflare.js";
 import { BLOCKLIST_URLS, ALLOWLIST_URLS, LIST_ITEM_LIMIT, DRY_RUN } from "./lib/config.js";
@@ -21,14 +20,14 @@ if (isDelete) {
   console.log("Deleting all CGPS lists and rules from Cloudflare...");
 
   const { result: rules } = await getRules();
-  const cgpsRules = rules.filter(({ name }) => name.startsWith("CGPS Filter Lists"));
+  const cgpsRules = rules.filter(({ name }) => name.startsWith("Zerotrustdns Filter Lists"));
   for (const rule of cgpsRules) {
     console.log(`Deleting rule: ${rule.name}`);
     await deleteRule(rule.id);
   }
 
   const { result: lists } = await getLists();
-  const cgpsLists = lists.filter(({ name }) => name.startsWith("CGPS List"));
+  const cgpsLists = lists.filter(({ name }) => name.startsWith("Zerotrustdns List"));
   if (cgpsLists.length) {
     console.log(`Deleting ${cgpsLists.length} lists...`);
     await deleteAllLists(cgpsLists);
@@ -58,6 +57,6 @@ await syncLists(domains);
 
 // Step 4: Upsert the block rule
 const { result: lists } = await getLists();
-await upsertRule(lists.filter(({ name }) => name.startsWith("CGPS List")));
+await upsertRule(lists.filter(({ name }) => name.startsWith("Zerotrustdns List")));
 
 console.log("Done.");
