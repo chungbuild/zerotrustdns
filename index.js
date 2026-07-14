@@ -5,7 +5,7 @@
  * Usage:
  *   node index.js          → download lists + sync to Cloudflare
  *   node index.js --dry    → download lists + preview changes (no API calls)
- *   node index.js --delete → delete all CGPS lists and rules from Cloudflare
+ *   node index.js --delete → delete all zerotrustdns lists and rules from Cloudflare
  */
 
 import { downloadLists, parseDomains } from "./lib/lists.js";
@@ -17,20 +17,20 @@ const isDryRun = args.includes("--dry") || DRY_RUN;
 const isDelete = args.includes("--delete");
 
 if (isDelete) {
-  console.log("Deleting all CGPS lists and rules from Cloudflare...");
+  console.log("Deleting all zerotrustdns lists and rules from Cloudflare...");
 
   const { result: rules } = await getRules();
-  const cgpsRules = rules.filter(({ name }) => name.startsWith("zerotrustdns Filter Lists"));
-  for (const rule of cgpsRules) {
+  const rulesToDelete = rules.filter(({ name }) => name.startsWith("zerotrustdns Filter Lists"));
+  for (const rule of rulesToDelete) {
     console.log(`Deleting rule: ${rule.name}`);
     await deleteRule(rule.id);
   }
 
   const { result: lists } = await getLists();
-  const cgpsLists = lists.filter(({ name }) => name.startsWith("zerotrustdns List"));
-  if (cgpsLists.length) {
-    console.log(`Deleting ${cgpsLists.length} lists...`);
-    await deleteAllLists(cgpsLists);
+  const listsToDelete = lists.filter(({ name }) => name.startsWith("zerotrustdns List"));
+  if (listsToDelete.length) {
+    console.log(`Deleting ${listsToDelete.length} lists...`);
+    await deleteAllLists(listsToDelete);
   }
 
   console.log("Done.");
