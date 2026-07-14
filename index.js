@@ -20,14 +20,14 @@ if (isDelete) {
   console.log("Deleting all CGPS lists and rules from Cloudflare...");
 
   const { result: rules } = await getRules();
-  const cgpsRules = rules.filter(({ name }) => name.startsWith("Zerotrustdns Filter Lists"));
+  const cgpsRules = rules.filter(({ name }) => name.startsWith("zerotrustdns Filter Lists"));
   for (const rule of cgpsRules) {
     console.log(`Deleting rule: ${rule.name}`);
     await deleteRule(rule.id);
   }
 
   const { result: lists } = await getLists();
-  const cgpsLists = lists.filter(({ name }) => name.startsWith("Zerotrustdns List"));
+  const cgpsLists = lists.filter(({ name }) => name.startsWith("zerotrustdns List"));
   if (cgpsLists.length) {
     console.log(`Deleting ${cgpsLists.length} lists...`);
     await deleteAllLists(cgpsLists);
@@ -57,6 +57,6 @@ await syncLists(domains);
 
 // Step 4: Upsert the block rule
 const { result: lists } = await getLists();
-await upsertRule(lists.filter(({ name }) => name.startsWith("Zerotrustdns List")));
+await upsertRule(lists.filter(({ name }) => name.startsWith("zerotrustdns List")));
 
 console.log("Done.");
